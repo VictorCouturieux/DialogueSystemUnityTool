@@ -1,0 +1,88 @@
+Upgrade du systeme de dialogue
+
+______________________________Le Script de paramétrage des dialogues : _______________________
+
+	A placer sur un objet persistent et qui va contenir les paramétrages de tous les
+dialogues du jeu
+
+
+Public variables : ___________________________________________
+
+- Vitesse du défilement des caractère par défaut
+- HUD object (l'objet du HUD qui s'affichera quand un dialogue se lance (l'image du cadre))
+- HUD text (l'objet du HUD qui contiendra le texte à afficher dans chaque bulle de dialogue)
+- HUD skip (l'image du HUD qui s'affichera quand une bulle de dialogue est terminé pour
+	indiquer au joueur qu'il peut passer à la bulle suivante)
+- Dialog sound (le son qui se lance quand une bulle de dialogue s'ouvre)
+- Skip sound (le son qui se lance quand on passe à la bulle suivante)
+- Nombre de personnages (array)
+*(variables associés à chaque personnages :)*
+	- Font (la police d'écriture choisit quand le personnage parle)
+	- Son numero 1 (sons choisit aléatoirement quand ce personnage parle, au moment où
+	  un nouveau caractère apparaît)
+	- Son numero 2
+	- Son numero 3
+	- Son numero 4
+
+
+______________________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+______________________________Le Script du lancement des dialogues : _______________________
+
+
+
+A placer sur un objet dans la scène qui lancera un dialogue spécifique. Quand l'event
+"RunDialogue" est actif, il lancera une cinématique avec les bulles de dialogue à l'écran.
+
+
+
+
+Public variables : ___________________________________________
+
+- Caméra origine (la caméra hors cinématique à linker ici)
+- Nombre de bulles de dialogues (array)
+*(Variables pour chaques bulles :)*
+	- Texte (string)
+	- Skip after (nombre de secondes où le texte reste affiché à l'écran avant de passer
+		au suivant (-1 par défaut) (Si -1, le dialogue suivant s'affichera uniquement
+		quand le joueur appuiera sur une touche pour passer le dialogue) )
+	- Personnage associé (dans la liste prédéfinie)
+	- Color (couleur du texte)
+	- Bold (si le texte est affiché en gras)
+	- Vitesse de défilement (en quantité de nouveaux caractères affichés à la seconde
+		0 = vitesse de défilement par défaut définit sur le paramétrage classique)
+	- "MoveCamera" ? (boolean pour savoir si la caméra en question se déplace lors de cette
+	   bulle de dialogue)
+	si true :
+		- Placement de la caméra à pour la bulle de dialogue (Transform)
+		- Smooth Camera Speed (à quelle point le déplacement vers
+		  ce nouveau point est smooth (0 = cut, 1 = mouvement très lent))
+
+
+______________________________________________________________
+
+
+Lorsque "RunDialogue" se lance pour la première fois, le script doit créer une caméra dans
+l'espace 3D laoù est la "Caméra origine" et la placer en caméra active de la scène (en
+désactivant la caméra d'origine). Puis l'event se lancera à chaque frame pour afficher les
+dialogues dans l'ordre, et ce jusqu'à ce que le dernier dialogue soit affiché.
+
+Quand on passe à une nouvelle bulle si "MoveCamera" est actif, alors la caméra se déplacera sur
+le transform indiqué à la vitesse définit.
+
+A chaque nouveau caractère qui apparaît, un des 5 sons du personnages associé à la bulle en
+cours se lance.
+
+Le texte apparaît dans la typo, la couleur, (en bold si oui), et à la vitesse définit pour la
+bulle.
