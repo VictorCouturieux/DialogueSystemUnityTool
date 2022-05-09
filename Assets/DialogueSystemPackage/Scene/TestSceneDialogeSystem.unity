@@ -825,9 +825,9 @@ GameObject:
   - component: {fileID: 1743615519}
   - component: {fileID: 1743615522}
   - component: {fileID: 1743615521}
+  - component: {fileID: 1743615524}
   - component: {fileID: 1743615520}
   - component: {fileID: 1743615523}
-  - component: {fileID: 1743615524}
   m_Layer: 5
   m_Name: TestButton
   m_TagString: Untagged

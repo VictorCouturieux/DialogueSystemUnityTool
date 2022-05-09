@@ -2,8 +2,7 @@ Upgrade du systeme de dialogue
 
 ______________________________Le Script de paramétrage des dialogues : _______________________
 
-	A placer sur un objet persistent et qui va contenir les paramétrages de tous les
-dialogues du jeu
+	A placer sur un objet persistent et qui va contenir les paramétrages des dialogues du jeu
 
 
 Public variables : ___________________________________________
